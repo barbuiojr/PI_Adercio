@@ -3,9 +3,8 @@ from menus import *
 from crud import *
 from api import *
 import os
-cad_ongs = []
 op = 0
-while op != 6:
+while op != 7:
     op = menu_inicial()
     if op == 1:
         listar_ongs(cad_ongs)
@@ -20,3 +19,10 @@ while op != 6:
         criar_projeto(on, cad_ongs)
     elif op == 5:
         busca_api()
+        print(cad_ongs)
+    elif op == 6:
+        listar_ongs(cad_ongs)
+        op1 = int(input('Escolha uma ONG para deletar: '))
+        print(cad_ongs[op1-1].ong)
+        url_1 = cad_ongs[op1-1].id
+        deletar_ong(url_1)
