@@ -13,7 +13,14 @@ def busca_api():
 def delete_api(url1):
     requests.delete(url1)
     print('Ong deletada com sucesso!')
-def gravar_projeto(ong):
-    indice = ong.id
+def gravar_projeto(indc, proj):
+    indice = cad_ongs[indc].id
     url1 = "https://teste-pi-senac-default-rtdb.firebaseio.com/"+indice+".json"
-    requests.patch(url1, json=ong)
+    print(url1)
+    p = proj.projeto
+    d = proj.descricao
+    r = proj.responsavel
+    s = proj.status
+    prjt = {"Projeto":[p,d,r,s]}
+    input('Tecle algo para continuar: ')
+    requests.patch(url1, json=prjt)

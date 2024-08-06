@@ -7,7 +7,7 @@ url = "https://teste-pi-senac-default-rtdb.firebaseio.com/.json"
 def criar_ong():
     ong = input('Digite o nome da ONG: ')
     pres = input('Digite o nome do presidente da ONG: ')
-    ong_post = {'Ong':ong, 'Presidente':pres}
+    ong_post = {'Tipo':'ONG','Ong':ong, 'Presidente':pres}
     requests.post(url, json=ong_post)
     cad_ongs.clear()
     busca_api()
@@ -33,7 +33,7 @@ def criar_projeto(on, cad_ongs):
      a = input('Tecle algo para continuar')
      print(f'Projeto criado com sucesso para a ONG {cad_ongs[on-1].ong}')
      print(f'Nome do projeto: {cad_ongs[on-1].projetos[0].projeto}')
-     gravar_projeto(cad_ongs[on-1])
+     gravar_projeto(on-1, proj_atual)
 def deletar_ong(url_1):
      urld = "https://teste-pi-senac-default-rtdb.firebaseio.com/"+url_1+".json"
      delete_api(urld)
