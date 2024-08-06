@@ -2,18 +2,15 @@ from classes import *
 import os
 import requests
 import json
+from api import *
 url = "https://teste-pi-senac-default-rtdb.firebaseio.com/.json"
 def criar_ong():
-    id = 25
     ong = input('Digite o nome da ONG: ')
     pres = input('Digite o nome do presidente da ONG: ')
-    ong_atual = Ong(id, ong, pres)
     ong_post = {'Ong':ong, 'Presidente':pres}
-    print(ong_post)
     requests.post(url, json=ong_post)
-    resultado = requests.get(url)
-    print(resultado)
-    return ong_atual
+    cad_ongs.clear()
+    busca_api()
 def listar_ongs(cad_ongs):
      c = 0
      os.system("cls")
@@ -32,10 +29,14 @@ def criar_projeto(on, cad_ongs):
      s = input('Informe a situação do projeto: ')
      proj_atual = Projeto(tit, d, r, s)
      cad_ongs[on-1].projetos.append(proj_atual)
+     print(cad_ongs[on-1].id)
+     a = input('Tecle algo para continuar')
      print(f'Projeto criado com sucesso para a ONG {cad_ongs[on-1].ong}')
      print(f'Nome do projeto: {cad_ongs[on-1].projetos[0].projeto}')
+     gravar_projeto(cad_ongs[on-1])
 def deletar_ong(url_1):
      urld = "https://teste-pi-senac-default-rtdb.firebaseio.com/"+url_1+".json"
-     print(urld)
-     requests.delete(urld)
-     print('Ong deletada com sucesso!')
+     delete_api(urld)
+     cad_ongs.clear()
+     busca_api()
+     

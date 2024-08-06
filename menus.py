@@ -5,7 +5,7 @@ def menu_inicial():
 2 - Listar projetos
 3 - Criar ONG
 4 - Criar projeto
-5 - Buscar ONGs no banco de dados
+5 - 
 6 - Deletar ONG
 7 - Sair
 Escolha uma opçao --->""")
