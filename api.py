@@ -1,26 +1,29 @@
 from classes import *
-import os
 import requests
-import json
+#import json
 cad_ongs = []
 url = "https://teste-pi-senac-default-rtdb.firebaseio.com/.json"
 def busca_api():
     listagem = requests.get(url)
     listagem = listagem.json()
     for k in listagem.keys():
-        ong_atual = Ong(k, listagem[k]['Ong'], listagem[k]['Presidente'])
-        cad_ongs.append(ong_atual)
+        if listagem[k]['Tipo'] == 'ONG':
+            ong_atual = Ong(k, listagem[k]['Ong'], listagem[k]['Presidente'])
+            cad_ongs.append(ong_atual)
+    for k in listagem.keys():
+        if listagem[k]['Tipo'] == 'projeto':
+            p = listagem[k]['Título']
+            id = listagem[k]['ID']
+            d = listagem[k]['Descrição']
+            r = listagem[k]['Responsável']
+            s = listagem[k]['Status']
+            proj_atual = Projeto(k, p, d, r, s)
+            for o in cad_ongs:
+                if o.id == id:
+                    o.projetos.append(proj_atual)
 def delete_api(url1):
     requests.delete(url1)
     print('Ong deletada com sucesso!')
-def gravar_projeto(indc, proj):
-    indice = cad_ongs[indc].id
-    url1 = "https://teste-pi-senac-default-rtdb.firebaseio.com/"+indice+".json"
-    print(url1)
-    p = proj.projeto
-    d = proj.descricao
-    r = proj.responsavel
-    s = proj.status
-    prjt = {"Projeto":[p,d,r,s]}
-    input('Tecle algo para continuar: ')
-    requests.patch(url1, json=prjt)
+def gravar_projeto(cod, tit, d, r, s):
+    proj_atual = {"Tipo":"projeto", "ID":cod, "Título":tit, "Descrição":d, "Responsável":r, "Status":s}
+    requests.post(url, json=proj_atual)

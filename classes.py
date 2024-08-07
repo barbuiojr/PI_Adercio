@@ -13,7 +13,8 @@ class Projeto():
     data:str
     responsavel:str
     status:str
-    def __init__(self, projeto, descricao, responsavel, status):
+    def __init__(self, id, projeto, descricao, responsavel, status):
+        self.id = id
         self.projeto = projeto
         self.descricao = descricao
         self.responsavel = responsavel

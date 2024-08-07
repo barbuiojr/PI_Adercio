@@ -5,14 +5,16 @@ from api import *
 import os
 op = 0
 busca_api()
-while op != 7:
+os.system("cls")
+while op != 9:
     op = menu_inicial()
     if op == 1:
         listar_ongs(cad_ongs)
+    elif op == 2:
+        listar_projetos()
     elif op == 3:
         criar_ong()
         indice = len(cad_ongs)-1
-
         print(cad_ongs[indice].ong, ' criada com sucesso')
     elif op == 4:
         os.system("cls")
@@ -24,7 +26,7 @@ while op != 7:
             criar_projeto(op1, cad_ongs)
     elif op == 5:
         pass
-    elif op == 6:
+    elif op == 7:
         listar_ongs(cad_ongs)
         op1 = int(input('Escolha uma ONG para deletar: '))
         if op1 > len(cad_ongs):
