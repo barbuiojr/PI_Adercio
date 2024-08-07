@@ -32,10 +32,14 @@ while op != 9:
         if op1 > len(cad_ongs):
             print('Opção inválida')
         else:
-            print(cad_ongs[op1-1].ong)
-            url_1 = cad_ongs[op1-1].id
-            deletar_ong(url_1)
-        sleep(1.5)
+            if len(cad_ongs[op1-1].projetos) != 0:
+                print('Existem projetos cadastrados para essa ONG\nOs projetos deverão ser deletados primeiro.')
+                print(f'{len(cad_ongs[op1-1].projetos)} projetos cadastrados')
+            else:
+                print(cad_ongs[op1-1].ong)
+                url_1 = cad_ongs[op1-1].id
+                deletar_ong(url_1)
+        sleep(2.5)
         os.system("cls")
     elif op == 8:
         listar_ongs(cad_ongs)

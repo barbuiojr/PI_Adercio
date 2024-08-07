@@ -40,6 +40,9 @@ def listar_projetos(t):
                print (f'{c} - {p.projeto}')
                c+=1
           print(30*'-')
+          op1 = int(input('Escolha um projeto para deletar: '))
+          api1 = cad_ongs[t].projetos[op1-1].id
+          deletar_ong(api1)
 def criar_projeto(on, cad_ongs):
      os.system("cls")
      tit = input('Digite o nome do projeto: ')

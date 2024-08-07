@@ -23,7 +23,7 @@ def busca_api():
                     o.projetos.append(proj_atual)
 def delete_api(url1):
     requests.delete(url1)
-    print('Ong deletada com sucesso!')
+    print('Registro deletado com sucesso!')
 def gravar_projeto(cod, tit, d, r, s):
     proj_atual = {"Tipo":"projeto", "ID":cod, "Título":tit, "Descrição":d, "Responsável":r, "Status":s}
     requests.post(url, json=proj_atual)
