@@ -11,7 +11,7 @@ while op != 9:
     if op == 1:
         listar_ongs(cad_ongs)
     elif op == 2:
-        listar_projetos()
+        listar_projetos(100)
     elif op == 3:
         criar_ong()
         indice = len(cad_ongs)-1
@@ -37,3 +37,7 @@ while op != 9:
             deletar_ong(url_1)
         sleep(1.5)
         os.system("cls")
+    elif op == 8:
+        listar_ongs(cad_ongs)
+        op1 = int(input('Escolha a ONG: '))
+        listar_projetos(op1-1)

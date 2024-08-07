@@ -21,19 +21,25 @@ def listar_ongs(cad_ongs):
           c +=1
           print(f'{c} - {entidade.ong}')
      print(30*'_')
-def listar_projetos():
+def listar_projetos(t):
      os.system("cls")
-     for o in cad_ongs:
-          if len(o.projetos) != 0:
-               print(30*'-')
-               print(f'ONG --> {o.ong}')
-               print(30*'-')
-               for p in o.projetos:
-                    print(f'Projeto: {p.projeto}')
-                    print(f'Descrição: {p.descricao}')
-                    print(30*'-','\n')
-               print(30*'-=','\n')
-     flag = input('Tecle algo para sair--> ')
+     if t == 100:
+          for o in cad_ongs:
+               if len(o.projetos) != 0:
+                    print(30*'-')
+                    print(f'ONG --> {o.ong}')
+                    print(30*'-')
+                    for p in o.projetos:
+                         print(f'Projeto: {p.projeto}')
+                         print(f'Descrição: {p.descricao}')
+                         print(30*'-','\n')
+                         print(30*'-=')
+     elif t != 100:
+          c=1
+          for p in cad_ongs[t].projetos:
+               print (f'{c} - {p.projeto}')
+               c+=1
+          print(30*'-')
 def criar_projeto(on, cad_ongs):
      os.system("cls")
      tit = input('Digite o nome do projeto: ')
