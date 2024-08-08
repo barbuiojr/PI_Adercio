@@ -40,9 +40,22 @@ def listar_projetos(t):
                print (f'{c} - {p.projeto}')
                c+=1
           print(30*'-')
-          op1 = int(input('Escolha um projeto para deletar: '))
+          op1 = int(input('Escolha um projeto: '))
           api1 = cad_ongs[t].projetos[op1-1].id
           deletar_ong(api1)
+
+def editar_ong(i):
+     print(f'Nome atual: {cad_ongs[i].ong}')
+     n = input('Digite um novo nome para a ONG\nou <ENTER> para manter -->')
+     if n == '':
+          n = cad_ongs[i].ong
+     print(f'Presidente atual: {cad_ongs[i].presidente}')
+     p = input('Digite o novo nome do presidente\nou <ENTER> para manter -->')
+     if p == '':
+          p = cad_ongs[i].presidente
+     url1 = cad_ongs[i].id
+     edit_api(url1, n, p)
+
 def criar_projeto(on, cad_ongs):
      os.system("cls")
      tit = input('Digite o nome do projeto: ')
@@ -54,6 +67,7 @@ def criar_projeto(on, cad_ongs):
      print(f'Nome do projeto: {tit}')
      cad_ongs.clear()
      busca_api()
+
 def deletar_ong(url_1):
      urld = "https://teste-pi-senac-default-rtdb.firebaseio.com/"+url_1+".json"
      delete_api(urld)

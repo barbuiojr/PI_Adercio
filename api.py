@@ -24,6 +24,16 @@ def busca_api():
 def delete_api(url1):
     requests.delete(url1)
     print('Registro deletado com sucesso!')
+
 def gravar_projeto(cod, tit, d, r, s):
     proj_atual = {"Tipo":"projeto", "ID":cod, "Título":tit, "Descrição":d, "Responsável":r, "Status":s}
     requests.post(url, json=proj_atual)
+    cad_ongs.clear()
+    busca_api()
+
+def edit_api(url1, n, p):
+    urledit = "https://teste-pi-senac-default-rtdb.firebaseio.com/"+url1+".json"
+    ong_edit = {"Ong":n, "Presidente":p}
+    requests.patch(urledit, json=ong_edit)
+    cad_ongs.clear()
+    busca_api()

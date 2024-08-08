@@ -25,7 +25,12 @@ while op != 9:
         else:
             criar_projeto(op1, cad_ongs)
     elif op == 5:
-        pass
+        listar_ongs(cad_ongs)
+        op1 = int(input('Escolha uma ONG para editar: '))
+        if op1 > len(cad_ongs):
+            print('Opção inválida')
+        os.system("cls")
+        editar_ong(op1-1)
     elif op == 7:
         listar_ongs(cad_ongs)
         op1 = int(input('Escolha uma ONG para deletar: '))
